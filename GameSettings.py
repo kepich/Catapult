@@ -1,0 +1,2 @@
+FPS = 30
+WINDOW_SIZE = (500, 500)
