@@ -14,14 +14,14 @@ class GameClass:
         self.DISPLAY = DisplayClass()
 
         self.entities = list()
-        self.enviroment = list()
+        self.environment = list()
 
         pygame.display.set_mode(self.WINDOW_SIZE)
 
     def gameLoop(self):
         while self.isPlaying:
             self.update()
-            self.DISPLAY.render(self.entities, self.enviroment)
+            self.DISPLAY.render(self.entities, self.environment)
             self.CLOCK.tick(self.FPS)
 
     def update(self):
@@ -35,3 +35,9 @@ class GameClass:
     def eventDispatcher(self, events):
         for event in events:
             pass
+
+    def environmentInitialising(self):
+        self.environment.append()
+
+    def createSky(self):
+        return
