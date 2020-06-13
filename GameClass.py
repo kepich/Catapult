@@ -25,12 +25,13 @@ class GameClass:
             self.CLOCK.tick(self.FPS)
 
     def update(self):
-        events = pygame.event.get()
+        exitEvent = pygame.event.get(pygame.QUIT)
+        if exitEvent:
+            self.isPlaying = False
+            return
 
+        self.eventDispatcher(pygame.event.get())
+
+    def eventDispatcher(self, events):
         for event in events:
-            if event.type == pygame.QUIT:
-                self.isPlaying = False
-                return
-
-    def render(self):
-        pass
+            pass

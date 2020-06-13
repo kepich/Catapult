@@ -9,4 +9,4 @@ class DisplayClass:
         pygame.display.set_mode(self.WINDOW_SIZE)
 
     def render(self, entities, enviroment):
-        pass
+        pygame.display.update()
