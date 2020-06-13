@@ -2,6 +2,8 @@ import pygame
 
 import GameSettings as GS
 from DisplayClass import DisplayClass
+from Polygon import Polygon
+from Rectangle import Rectangle
 
 
 class GameClass:
@@ -16,6 +18,7 @@ class GameClass:
         self.entities = list()
         self.environment = list()
 
+        self.environmentInitialising()
         pygame.display.set_mode(self.WINDOW_SIZE)
 
     def gameLoop(self):
@@ -37,7 +40,17 @@ class GameClass:
             pass
 
     def environmentInitialising(self):
-        self.environment.append()
+        self.environment.append(self.createSky())
+
+        for floorObj in self.createGround():
+            self.environment.append(floorObj)
 
     def createSky(self):
-        return
+        return Rectangle(0, 0, self.WINDOW_SIZE[0], self.WINDOW_SIZE[1] , (40, 120, 120))
+
+    def createGround(self):
+        return [
+            Rectangle(0, 300, 200, 200, (40, 120, 40), False),
+            Polygon([[200, 300], [400, 450], [400, 600], [200, 600]], (40, 120, 40), False),
+            Rectangle(400, 450, 400, 300, (40, 120, 40), False),
+            ]
