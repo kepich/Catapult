@@ -2,8 +2,7 @@ import pygame
 
 import GameSettings as GS
 from DisplayClass import DisplayClass
-from Polygon import Polygon
-from Rectangle import Rectangle
+from LevelFactory import LevelFactory
 
 
 class GameClass:
@@ -15,16 +14,18 @@ class GameClass:
 
         self.DISPLAY = DisplayClass()
 
-        self.entities = list()
-        self.environment = list()
+        self.level = LevelFactory.getLevel()
 
-        self.environmentInitialising()
+        self.entities = self.level.entities
+        self.environment = self.level.environment
+        self.background = self.level.background
+
         pygame.display.set_mode(self.WINDOW_SIZE)
 
     def gameLoop(self):
         while self.isPlaying:
             self.update()
-            self.DISPLAY.render(self.entities, self.environment)
+            self.DISPLAY.render(self.entities, self.environment, self.background)
             self.CLOCK.tick(self.FPS)
 
     def update(self):
@@ -38,19 +39,3 @@ class GameClass:
     def eventDispatcher(self, events):
         for event in events:
             pass
-
-    def environmentInitialising(self):
-        self.environment.append(self.createSky())
-
-        for floorObj in self.createGround():
-            self.environment.append(floorObj)
-
-    def createSky(self):
-        return Rectangle(0, 0, self.WINDOW_SIZE[0], self.WINDOW_SIZE[1] , (40, 120, 120))
-
-    def createGround(self):
-        return [
-            Rectangle(0, 300, 200, 200, (40, 120, 40), False),
-            Polygon([[200, 300], [400, 450], [400, 600], [200, 600]], (40, 120, 40), False),
-            Rectangle(400, 450, 400, 300, (40, 120, 40), False),
-            ]

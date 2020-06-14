@@ -1,6 +1,7 @@
 from Entity import Entity
 from pygame import draw
 
+
 class Polygon(Entity):
     def __init__(self, vertices, color, isGhost):
         super().__init__()
