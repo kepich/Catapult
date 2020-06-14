@@ -17,7 +17,6 @@ class GameClass:
         self.level = LevelFactory.getLevel()
 
         self.entities = self.level.entities
-        self.environment = self.level.environment
         self.background = self.level.background
 
         pygame.display.set_mode(self.WINDOW_SIZE)
@@ -25,7 +24,7 @@ class GameClass:
     def gameLoop(self):
         while self.isPlaying:
             self.update()
-            self.DISPLAY.render(self.entities, self.environment, self.background)
+            self.DISPLAY.render(self.entities, self.background)
             self.CLOCK.tick(self.FPS)
 
     def update(self):
@@ -34,8 +33,4 @@ class GameClass:
             self.isPlaying = False
             return
 
-        self.eventDispatcher(pygame.event.get())
-
-    def eventDispatcher(self, events):
-        for event in events:
-            pass
+        self.entities.update()

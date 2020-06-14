@@ -1,7 +1,11 @@
-from Entity import Entity
+from abc import ABC
+
 from pygame import draw
 
-class Rectangle(Entity):
+from Entity import Entity
+
+
+class Ellipse(Entity):
     def __init__(self, x, y, width, height, color, isGhost=True):
         super().__init__()
         self.x = x
@@ -11,8 +15,12 @@ class Rectangle(Entity):
         self.width = width
         self.height = height
 
-    def render(self, scene):
-        draw.rect(scene, self.color, (self.x, self.y, self.width, self.height))
-
     def update(self):
         pass
+
+    def render(self, scene):
+        draw.ellipse(scene, self.color, (self.x, self.y, self.width, self.height))
+
+    def getVertices(self):
+        pass
+

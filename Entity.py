@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Entity(ABC):
     def __init__(self):
         self.x = 0
@@ -14,4 +15,8 @@ class Entity(ABC):
 
     @abstractmethod
     def render(self, scene):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def getVertices(self):
         raise NotImplementedError()
